@@ -1,0 +1,25 @@
+﻿@model IEnumerable<Download>
+<h2>New Releases | <a onclick="getTotal()" href="#" style="text-decoration:wavy">Get Total</a></h2>
+<hr />
+<div style="width:96%;margin:auto;padding-bottom:10px;" id="Printer">
+	
+	
+</div>
+<div style="display:flex;flex-wrap: wrap;">
+	@foreach (Download d in Model)
+	{
+		<div class="ProductContainer" style="width:260px;margin-left:15px;margin-bottom:10px;">
+			<img src="~/img/@d.ImgSrc" style="width:250px;">
+			<p style="font-weight: 600;margin-bottom: 2px;">@d.Title</p>
+			<p style="font-weight: 200;margin-bottom: 10px;">@d.Artist</p>
+			<p style="font-weight: 200;display:inline;">$@d.Price</p>
+
+			<form style="display: inline;" id="p-@d.Id">
+				<input type="text" hidden="hidden" id="Title-@d.Id" value="@d.Title">
+				<input type="number" hidden="hidden" id="Price-@d.Id" value="@d.Price">
+				<input type="number" max="4" min="1" style="width:60px;" id="amount-@d.Id">
+				<input type="button" value="Add To Cart" onclick="toCart(@d.Id)">
+			</form>
+		</div>
+	}
+</div>
